@@ -1,0 +1,23 @@
+ 4. file  management
+ 
+    **Octal Method of file(0-7)
+    
+    000 - no permission 
+    777 - all permission  to ugp
+    
+    0  - no permission 
+    1  - Execute Only                     X
+    2  - Write Only                       W
+    3  - Write & Execute (1+2)
+    4  - Read Only                        R
+    5  - Read & Execute (4+1)
+    6  - Read & Write (4+2)
+    7  - R ,W ,X (4+2+1)
+    
+    
+    ** Umask Method(default permissio change)
+     
+     if umask u+rw,g+rw,o-r
+     then it change to default permission to everyfile u created with that access but this is temporary permission till ur shell is on   once restart ur shell this will again set to its permission 0002 
+     
+     if want permananetly changes then it changes from .bashrc file(which is hidden file) 

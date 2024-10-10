@@ -1,0 +1,96 @@
+
+
+
+created 2 users 
+        2 groups
+        
+  create 2 file without   
+            sudo touch file1 & file2
+            
+  give ownership to file to specific user
+   
+       sudo chown user1:user1 /home/maroof-56/file1 
+       
+  change user ownership for user but same grp
+  
+       sudo chown user1 file2 
+       sudo chown user2 file1
+       
+  change user ownership for user but diff grp
+       
+       sudo chown user1:grp2 file1  (for file1 user is user1 & has grp2 )
+       sudo chown user2:grp1 file2  (for file2 user is  user2 but grp1 )
+       
+ unfortunately  i created file1 inside /home/maroof-56 instead of user1 
+ 
+       find file1 using find command - find /home/maroof-56 -name "file1"
+       
+       & then move file1 to user1  - mv /home/maroof-56/file1 /home/user1
+       
+       & switch as user1 & read file 
+       
+       
+ if u wont make home directory when making user then u wont able to do anything inside user
+ 
+ make home dir - mkdir /home/user 
+ 
+      * MAKE USER WITH DIR 
+        
+         - USERADD -M USERNAME
+         
+         - USERADD -M -D  /CUDTOM/HOME/DIR USERNAME (-D HERE FOR CUSTOM HOME DIRECTORY OTHER THAN DEFAULT)
+         
+         
+         
+       * set user passwd 
+       
+         u cant set userpasswd from inside the user if below get,so u can set it from admin
+         $ ls -l /etc/shadow
+        -rw-r----- 1 root shadow 1511 Oct  8 21:39 /etc/shadow
+        
+        
+        * ERROR : user1 is not in the sudoers file.
+               - means user1 has not permission to use sudo
+               
+               
+        * ADD USER2 IN GRP2 USING NANO
+           
+               -  sudo nano /etc/group ( Find the line that starts with grp1: and add user2 to the list of users in that group)
+               -  It should look something like this 
+                   grp1:x:1008:user1,user2
+                   
+
+       * Reading file1 from user2 & vie versa
+       
+         -CONDITION
+         
+           - 1. File1 has permission to read other
+           - 2. user2 should be in user1 grp & grp has read permission to set
+           
+           - CAT /HOME/USER1/FILE1  ((To read File1)
+
+
+
+     *  CHOWN  (Change Ownership of file )
+       
+            - U cant change userOwnership when u loggedIn as user1 ,to change that u required as root user 
+            - SUDO CHOWN USER2 /HOME/USER1/FILE1  (Give  full path to change file1 ownership) 
+            
+            
+     * CHANGE OWNERSHIP AND READ OTHER USERFILE (it required full path with every command)
+     
+            - Change ownership of file1 to user2 
+               chown user2 /home/user1/file1
+            
+            - Verify it 
+               ls -l /home/user1/file1
+               
+            - Read It 
+               cat /home/user1/file1 
+               
+               
+       * CHGRP  ( TO CHANGE GRP OWNERSHIP )
+       
+            - sudo chgrp grp2 /home/user1/file1  (Changed File1 grp to grp2 )
+            
+            

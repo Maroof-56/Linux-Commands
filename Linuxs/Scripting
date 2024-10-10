@@ -1,0 +1,16 @@
+
+  Scripting in nano 
+    script is the sequence of command 
+  
+  - first write hash and then ! and know your bash location 
+  - to know the bash location just type which bash 
+  - to execcute script ./script_name
+  - give execute permision to script
+  - ctrl o to save ,ctrl x to exit
+  
+  
+  *which
+     - use to give the location of command 
+     
+  * whatis 
+     - also used to know abt cmd

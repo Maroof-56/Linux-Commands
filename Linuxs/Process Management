@@ -1,0 +1,92 @@
+
+ 5. Process Management 
+ 
+         (ps.top.kill,nice command)
+         
+     ** ps (Process Status)
+      
+     - use to display all the running process in the linux system
+      
+      - ps -e | ps -A  ( to check the the running process)
+      - ps -ef | more  ( for full format) more detail
+      - ps aux | more  (more and more detail)
+      
+     - to see process by name 
+      
+      - ps -u root ( to see root user ) 
+      - ps -u usename ( to see user process)
+      - ps -u u | more 
+      - ps -G u (to see grp process associated)
+      - ps -ejH ( to see tree of process) like it show sub process
+      
+      
+    ** top (table of process)
+    
+      - top shows real-time view of running process in linux nd and display kernel managed task 
+      - it also provide sysytem info summary that shows resources utilization including cpu and memory usage 
+      (from when the system is on,how much user ava,running and sleep process,task  etc 
+      - u can easily track cpu memory uti ,can measure performance etc
+      
+      
+      - there are numbers of command ava with top 
+      
+       top with c = shows path 
+                k = to kill any process from inside 
+                n = to change the number of task display
+              d,s = to refresh ( by default it refresh after  sec)
+                m = to sort linux process by memory usage
+                r = to change nice value of process(-ve value have high priority -ve have less)
+                u = to filter task by user
+                f = field management (like u want more column or to delete column unused use this)
+                use arrow key  to select field and type space to remove * marks from that field 
+                user right arrow key to select field and sort the filed 
+                to cahnge color press z ,b to bold
+                
+              
+     ** Kill 
+     
+     - use to terminate process manually
+     
+     - kill options pid
+      (options = signal name or no)
+      (pid = process id)
+      
+      - kill -l to see detail 
+      
+      - Ex 
+         - kill -1 pid (to restart th prcess)
+         - kill -2 pid (interupt from keyboard like ctrl c)
+         - kil  -9 pid ( forcefully terminate the process)
+         - kill -15pid (kill process rqacefully)
+         
+         
+    ** Nice 
+     
+         - Nice value lies fromm -20 to 19 
+         lower the nice value higher the priority 
+         - to check nice value simply type (ps -l pid) 
+         - we can also change nice value according to importance
+          Ex: type ( nice -n -10(value u want to give) /home/maroof/filename)
+          
+    ** Jobs 
+    
+       used to see the active jobs 
+       - simply typed jobs to see available active jobs
+       
+       - there are 2 variant in that
+         - bg ( resume jobs to background) means jobs will done in background
+           helps to use terminal for other work
+         - fg (resume jobs to foreground )
+         - bg %jid (to resume specific job in bg)
+         - fg %jid (  "" )
+         
+     ** nohup  (widely used ) 
+     
+       if u want your process keep running even after closing terminal ,use nohup
+     
+      - nohup process & ( command to use ) 
+      it create nohup.out log file where it stored u data 
+      - nohup process > /dev/null 2>&1 & 
+        no output will store in nohup.out file
+        
+        

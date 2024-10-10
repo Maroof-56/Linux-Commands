@@ -1,0 +1,57 @@
+
+      Package Management 
+     
+        In pacakge management linux system like centos red hat based uses YUM/DNF AND RPM 
+        &
+         YUM (tool & command ) 
+        - ( yellow-dog updater modified ) 
+        - primary package management tool for redhat
+          
+       Apt for debaian based , ubuntu , kali linux etc 
+     **if u r root user u dont need to add sudo for installation else u have to add
+       
+      - upgrade (will delete the old package)
+      - update  (keep the old pac , so we can rollback)
+      
+      - apt install package name
+      - apt remove package name 
+      - apt autoremove ( to remove the dependencies also ) 
+      
+      
+      - There are two types of package tool available 
+         
+         - Low Level.
+           - it handle task like installing/removing file 
+           - like   Debian based - dpkg
+           -        redhat based - rpm 
+         
+         - High Level.
+           - It handle task like performing of metadata searching & dependency resolution.
+           - Debian  - apt-get
+           - Redhat  - yum 
+           
+        - when we remove some packagw with apt remove package_name it remove its package but the configuration file is left on system
+        so to remove configuration file or completely remove package 
+          apt purge package_name to completely remove pakage
+          
+         - to check  which required file will download to ur package simply type
+            apt install -s  package_name
+                    OR
+            apt-get install -s package_name
+            
+         * To Upgrade your kernel 
+           apt-get dist-upggrade
+           
+           
+         * dpkg
+           - after download any application with with .deb structure 
+           - type dpkg -i package_name 
+           - it will give dependency error coz it doesnot directy download from repository but
+           - the required file that showed couldnot download will be stored sommewhere like in cache memory 
+           - so type apt-get update it will install dependency automatically &  then
+           - typed apt-get -f upgrade (-f stand with fix here)
+           - again typed dpkg -i package_name to install the app
+           - type which package_name to check where it install
+           - to confirm installation type dpkg --get-selcctions | grep package_name
+           - dpkg --remove package_name to remove  & dpkg --purge to completely remove 
+             

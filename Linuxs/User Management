@@ -1,0 +1,64 @@
+
+  3.Linux User Management 
+  
+  -  i enter in root using sudo -s 
+     (sudo root gives me authentication failure)
+     sudo passwd root to change root passwd and enter in root using sudo root
+     
+    - to add user type useradd name 
+    - to verify user has add type id & name of user
+    
+    ** How to add user
+    
+    - useradd -g QA -s /bin/bash -c "Part Of QA Team" -m -d /home/victor victor
+    -g, --gid GROUP               name or ID of the primary group of the new
+                                account
+    -s, --shell SHELL             login shell of the new account
+    
+    -c, --comment COMMENT         GECOS field of the new account
+
+    -m, --create-home             create the user's home directory
+ 
+    -d, --home-dir HOME_DIR       home directory of the new account
+
+    victor is group and user name 
+    
+    ** How to delete user 
+    
+     userdel username to delete user 
+     
+     userdel -r  (it will remove home directory)
+     
+     userdel -f (it will forcely delete even if user is loged in)
+     
+     ** How to modify Grp
+     
+     usermod -G QA(jis grp me add krna h ) mrf(jo grp ko add krna)
+     
+     - -G, --groups GROUPS           list of supplementary groups of   the                                   new account
+     & u will see user mrf will add in QA grp
+     uid=1001(mrf) gid=1001(mrf) groups=1001(mrf),1002(QA)
+     
+     usermod -m -d /home/victor-name victor  
+     (this will modify usergrp name) to its current name
+     
+     ** For user passwd 
+      passwd username to set user password 
+      
+      
+      ** To check how much user createdls
+       
+       less /etc/passwd
+       less /etc/groups (for grp detail)
+       less /etc/shadow (details about user like pass(encrypt) & all)::
+      
+      ** To add user to Specific grp 
+       
+         - sudo gpasswd -a user_name group_to_add (-a to add , -d to delete) 
+         
+
+      ** Bashrc file  
+        
+        - it is script that is execute when new terminal section is started in interactive mode
+        - ls -a to see bashrc file
+        - can also edit bashrc file from gedit gui editor = gedit bsashrc
