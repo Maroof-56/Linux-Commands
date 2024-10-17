@@ -1,0 +1,85 @@
+
+  FIREWALL
+  
+    A Firewall is a network security system that monitor and control incoming & outgoing network traffic based on rules defined 
+    
+    Basically used to  determine & block untrusted network to access out system 
+
+    Types (Based on configuration or setup)
+    
+    1. Sod5tware Based
+     Running on Operating Syatem 
+    
+    2.Hardware Based
+     A dedicated appliance wit firewall software beween two different network (mostly used by network  team ) 
+     
+     
+     Tools on linux for managing firewall 
+     
+      - ufw ( uncomplicated firewall ) 
+      - firewalld  - newer version of centos , redhat , fedora etc .
+      - iptables 
+      
+      
+     Installation 
+     
+      1. ufw ( uncomplicated firewall ) 
+        
+        - sudo apt install ufw 
+        - simple & easy to use 
+        - sudo ufw status ( to check it is installed or active ? )
+        - sudo ufw enable ( to activate )
+        
+        
+      2. firewalld 
+       
+        - sudo apt install firewalld
+        - complex & dynamic to use 
+        - syatemctl start/enble firewalld
+        - systemctl stop/disbale firewalld   ( restart to restart the firewall ) 
+        
+        
+        
+        
+       - To check the rules of firewall
+         - firewall-cmd --list-all
+         
+       -  Listing of all the services forewalld is aware of 
+         - firewall-cmd --get-services
+         - if u want to add any service in firewalld you only can use available service not beyond that 
+         
+       - To reload the config of firewalld
+         - firewall-cmd --reload  ( if u have done any  chaanges ) 
+         
+       - Firewall has multiple zones , to check list
+         - firewall-cmd --get-zones
+         - when u typed firewall-cmd --get-list-all u will se the public zones is active , so  u can active any  available zone accoring to need
+         - firewall-cmd --get-active-zones  ( to  see active zone ) 
+         - firewall-cmd --zone=public --list-all ( to get rules of active zone ) 
+         
+       - To add any service temporarily
+         - firewall-cmd --add-servics=service_name  ( list all service firewall-cmd --llist-all to check name and add it ) & --rempve-servicec
+         - when u do reload it will remove automatically coz of temporaril addition of service
+         
+       - To add any service temporarily
+         - firewall-cmd --add-servics=service_name --permanent  ( same for remove )
+         
+         
+       -  To block an incoming traffic from an IP 
+       
+         - firewall-cmd --add-rich-rule='rule
+                                         family="ipv4"
+                                         source address = "192.168.0.0"
+                                         reject'
+               
+       - To block  outgoing traffic to a IP or URL (hum na acess kr payee)
+         
+         - firewall-cmd --direct --add-rule ipv4 filter OUTPUT 0 -d <IP> -j DROP
+                                
+       - TO get any address 
+       
+         - host -t a www.domone.come      
+         
+         
+       - To block icmp incoming traffic (no one can ping ur server(
+         - firewall-cmd -add-icmp-block-inversion                           

@@ -1,0 +1,65 @@
+
+  SSH ( Secure Shell ) 
+  
+  
+   1. What is ?
+     
+      SSH is  network communication protocoll that enables two device/computer to communicate  & share data 
+      
+      It is called securre shell because the communication between host & client is in encrypted form 
+      
+      The default port for ssh client communication is 22, we can change  default port
+      & use one between 1024 - 32,767 
+      
+      SSH is also a command in linux 
+      
+      It is also used to access another linux server  OR accessing a linux server through linux terminal 
+      
+      syntax - ssh user@host(IP/domain)  ( user should be in present in server )
+      
+      
+   2. How to use ssh ? 
+     
+       To use ssh , ssh service must be install on linux server 
+      
+      Check if it is present ?
+       
+       dpkg -l | grep ssh   
+              OR 
+       check file /etc/ssh/sshd_config
+                 
+    3. Install ?
+    
+       install openssh-clients openssh-server 
+       
+    4. Enable 
+     
+       sudo systemctl status ssh   - if disable-
+       
+    5. To start the SSH service manually, you can run:
+
+        - sudo systemctl start ssh
+        
+    6.If you want the SSH service to start automatically at boot, you can enable it with:
+
+        - sudo systemctl enable ssh
+        
+        
+      
+     * Accessing linux server from another server ( accessing other linux os using another os )
+      
+       - First user has been  created to another server u wanted to access 
+       - ssh user@ip 
+       
+       Eg: Accesing Kali linux from ubuntu 
+           
+           simply in kali type ipconfig to get ip address
+           now in ubuntu type ssh kali@IP
+           So here u need to enter password for eveytime when u want to login in ubuntu as kali 
+           if u want not to enter password again & again  
+            
+            - Generate a new ssh key pair in local machine  - type in ubuntu- ssh-keygen (ls .ssh to verify that generated file) 
+            - copy that public key in remote machine 
+            - login to remote server without password  - type in ubuntu - ssh-copy-id kali@IP ( it will sk password at once to confirm )
+            
+             - 

@@ -1,0 +1,185 @@
+
+ Networking 
+ 
+   1.ping 
+   2.traceroute
+   3.netstate
+ 
+   
+   
+   LAN (Below 3 things inlcude inside lan)
+   
+   IP
+    - U know that
+   
+   
+   Subnet
+    - it is not the ip addr it may look like ip 
+    - define the overall range for particular LAN
+    - How subnet knows that particular device in its range ?
+      - The IP initial numbers decide 
+        Eg: 198.12.30  ,  198.12.7.5 
+            198 & 12 tells that it from same network
+            
+            
+    Router 
+     
+    -  Router is the gateway that communicate with outside internet 
+    -  Gateway is nothing but IP of an Router
+    -  While communnicate with outer area netwwork router didnt expose ip of inside device 
+    
+    
+    
+    
+    
+    1. Ping (Packet internet groper ) 
+    
+      - What ping command can do 
+       
+        - Check network connectivity ( check that can we connect to server)
+        - check internet connection 
+        - check network interface card 
+        - check latency on network 
+        - DNS resolution 
+        
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+      
+     - PING FOR NETWORK CONNECTIVITY 
+        
+      - For Successful Connection 
+        
+        - 100% packet recieve  ( Connected throgh icmp  -  internet control message protocol)
+        - 100% packet loss  ( Not connected ) 
+        - Request timeout for icmp  ( Not connected ) 
+        - Destination host unreachable ( Not Connected ) 
+        
+      - Reason for not connection 
+      
+        - Firewall
+         
+          - Firewall not allowed you to connect 
+          - 
+          
+        - Server is down 
+        
+        - Problem from your side 
+          
+          - Not Connected with internet 
+          - Hardware issue 
+          - Router issue
+          
+          
+        - 50 % Packet loss
+         
+          - Network Traffic
+          
+          
+   - PING FOR DNS RESOLUTION 
+   
+      - Command 
+      
+        - ping hostname 
+        - ping ip 
+        - ping -c 3 ( for three time packet )
+        - ping -i 2 ( for time interval of 2 sec )
+        - ping -c 5 -q ( This will give only summary ) 
+        - ping -f ( This will send packet as fast as possible to check network performance) 
+        - ping -s 500 ( To change the size of packet )
+        - ping -w 10 (To stop printing after 10 sec ) 
+        - ping -a ( generate sound on each packet ) 
+        - 
+     
+--------------------------------------------------------------------------------------------------------------------     
+      
+      
+   2. Traceroute 
+   
+         Track the route packet on how data travel on internet from your computer to destination.
+         
+         The only parameter is required is name or ip of destination host.
+         
+         When we sending packet from serverA to B then in between there are lots of Routers available 
+         Routers can create problem to reached
+         
+         Traceroute  is not default available in system , it need oto be install
+         
+         sudo apt install traceroute
+         
+         
+      - tarceroute www.google.com
+      
+        - Give u the info how it reach to destination
+        - Hops ( Number of routers available or present in between ) 
+        
+      - Commands 
+      
+        - traceroute  ip 100 ( BY default package sent rate is 60 u can change)
+        - traceroute -q 1 ip ( Default no of packet per hops is 3 to change it use this command ) 
+        - Eg 1  _gateway (10.0.2.2)  498.967 ms  499.457 ms  499.320 ms ( last three time shows from a to b to a time ) 
+        - traceroute -p  port-number ip ( Default port number is 33434 somethinng to change it use this ) 
+        - traceroute -4 | 6 ip ( To use ipv4 or ipv6 address ) 
+        - traceroute -g your_ip ip  ( To route through gate ) 
+
+
+----------------------------------------------------------------------------------------------------------------------------------
+
+
+  3. Netstat
+  
+     Install it & switch to root 
+     Netstate is command-line network utility that diplays
+      
+      - Network connection for tcp udp
+      - routing tables 
+      - a number of network interface 
+      - network protocol statics 
+      
+      
+     Case : 
+       
+      - To identify no of coneection on give port or IP 
+        - netstat -putan | grep port/IP   (putan - process udp tcp all & numeric )
+        
+        - netstat | more ( Limited info means active one ) 
+        - netstat -a | more ( to see connection including tcp & udp )
+        - netstat -at | more ( to see tcp protocol only ) 
+        - netstat -au | more ( '' )
+        - netstat -at6 | more ( to see tcp version 6 v6 | 4 to v4 )
+        - netstat -l | more ( to see only who are listening ) 
+        - netstat -ln | more ( to see numerical addrs of local address ) 
+        
+          Example :netstat -al | more
+           Proto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 _localdnsstub:domain    0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:http            0.0.0.0:*               LISTEN     
+tcp        0      0 _localdnsproxy:domain   0.0.0.0:*               LISTEN     
+tcp        0      0 localhost:ipp           0.0.0.0:*               LISTEN     
+tcp        1      0 maroof-56-Virtual:53588 123.35.104.34.bc.g:http CLOSE_WAIT 
+tcp        0      0 maroof-56-Virtual:35992 213.238.236.35.bc:https ESTABLISHED
+
+        - Below local address there is name of every address 
+        
+        
+        - Example : netstate -ln | more 
+           roto Recv-Q Send-Q Local Address           Foreign Address         State      
+tcp        0      0 127.0.0.53:53           0.0.0.0:*               LISTEN     
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.54:53           0.0.0.0:*               LISTEN     
+tcp        0      0 127.0.0.1:631           0.0.0.0:*               LISTEN     
+tcp6       0      0 :::80                   :::*                    LISTEN     
+tcp6       0      0 ::1:631                 :::*                    LISTEN    
+
+        - Below local address u will see the numerical adress of every name 
+        
+        - netstat -p | more (  To view the PID of programme of connection means konse program ki wajah se ye port run ho ra h ) & netstat -lnp (it also works )
+        
+        - netstat -r ( To view the routing table ) 
+        
+        - netstat -i (  To see the list of all interface ) 
+        
+        - netstat -ap | grep process_name ( Which port a process is using ) 
+        
+        - netstat -s  ( to see statics means list of ip , tcp , udp & so on ) 
+        
+
+        
