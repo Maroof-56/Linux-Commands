@@ -1,0 +1,302 @@
+
+ SHELL SCRIPTING
+ 
+    - A shell provide an environment to a user to execute commands & interact with kernel.
+    - Shell scripting consists of set of commands to perform task.
+    - All command execute sequentially.
+    - Some task like manipulation program exectuion user intreaction automation of task etc can be done.
+     
+                                      Layers 
+                                                    
+                                   Applications
+                        
+                                      Shell
+                            
+                                      Kernel
+                            
+                                      Hardware
+                            
+      Types in shell 
+      
+         - .bash  (most common type)
+         - .sh    
+         - .ksh
+         - .tsh
+         - .fish
+         - .zsh   (advance version of bash)
+         
+       Check your  shell type
+         
+         - echo $0
+         
+         - cat /etc/shells     ( check supported shells)
+         
+         - cat /etc/os-release (check os type - )
+                        
+                        
+       SHEBANG  (/usr/bin/bash)
+       
+         - which bash - to check loc
+         - Although it is not necessary to use but use it for standard
+         - ctrl c   - to terminate process
+         - ctlr z   - to stop
+         
+       Run the script
+       
+         - ./script_name    ( Script file should have execute permissionn to execute)
+         - bash script_name ( it run the script even if script doesn't have execute permission)
+         - /path/to/script_file ( It will run the script if ur not in script folder or somewhere ex: /home/maroof-56/myscripts/basic_script.sh)
+          - script file should have execute permission
+          - .(dot) represent current file
+          
+        
+       COMMENTS  IN Bash
+       
+          - Using #  ( This is comment)
+          - << comment
+             ...
+             your comments
+             ...
+             comment
+             
+             
+       VARIABLES 
+       
+          - Check  script file 
+          
+          
+       ARRAYS
+       
+          - Check  script file 
+          
+          47 minutes done 
+          
+          
+          
+       ARRAY KEY_VALUE
+       
+       
+          - Check  script file    to declare that array
+          
+            - declare -A array_name
+            
+            
+       STRING
+       
+       
+          - Check  script file 
+          
+          
+          
+          
+          
+       USER INTERACTION
+          
+          
+          - Check  script file 
+          
+          
+       Arithmetic Operation
+       
+         - Check  script file 
+         
+         
+       IF_ELSE 
+       
+       
+       1:44 min
+       2:23:46  / 1 Nov 
+       
+       
+       
+       
+       
+       
+_____________________________________________________________________________________________________________________
+
+
+
+     FUNCTIONS 
+     
+     
+     
+     	A Block of code which perform some task & run when it is called..
+     	Can be reuse many times in our program which lessen the lines of code.
+     	we can pass arguments to method.
+     	
+     	
+     	
+     	
+    BASENAME 
+    
+     It gives the file name when u enter the path
+     
+      basename /home/maroof/mysccripts/test.csv
+     o/p - test.csv
+     
+     
+   DIRNAME
+   
+     It gives the dir name of the file present in
+     
+         dirname /home/maroof/mysccripts/test.csv
+          o/p -      /home/maroof/mysccripts
+          
+   REALPATH
+     
+     gives the actual path of file ,dir
+     helps for  use in searching
+     
+      realpath test.csv
+      o/p -      /home/maroof/mysccripts/test.csv
+      
+      
+      
+   RANDOM 
+     
+      it generate  random number between 0 to 32767
+   
+      - echo $RANDOM
+      
+      
+   UID
+   
+      Gives the user id of user logged in
+      
+      - echo $UID
+      - User UID is always  - 1000
+      - Root UID is always  - 0
+      
+      
+   1. $#    - Give the number of arguments passes to a script or function.
+   
+   2. $?    - Last command was executed successfully or not.
+   
+   3. ${0}  - Give you the file name
+      
+   4. ${1}  - This will hold/store the arguments that passes through script.
+   
+   5. $@    - Gives you the number of arguments passes through script
+   
+   6. ${@}  - It will store all the arguments passes thorugh script
+   
+   
+   LS > File_name    ( single > means override the new things ) 
+   
+    it wil copy all the file of that loc into specified filename
+    
+    1.- maroof-56@maroof-56-VirtualBox:~/myscripts$ ls > all_file.txt
+    
+maroof-56@maroof-56-VirtualBox:~/myscripts$ cat all_file.txt 
+01_basic.sh
+
+    2. date > allfile.txt
+    
+     maroof-56@maroof-56-VirtualBox:~/myscripts$ date > all_file.txt
+      
+maroof-56@maroof-56-VirtualBox:~/myscripts$ cat all_file.txt 
+Thu Nov  7 04:01:59 PM IST 2024
+
+      
+    ***- See it will remove the previous things & add that new command reult.
+    
+    
+   LS >> file_name   ( >>  to append ,means also wants previous one )
+   
+     pwd >> alfiles.txt
+     
+     
+    *** - both result is available 
+       maroof-56@maroof-56-VirtualBox:~/myscripts$ pwd >> all_file.txt 
+       
+maroof-56@maroof-56-VirtualBox:~/myscripts$ cat all_file.txt 
+Thu Nov  7 04:01:59 PM IST 2024
+/home/maroof-56/myscripts
+
+
+
+     &> /dev/null 
+    
+    
+      if u dont want print the output of a command on terminal or write in file , u can redirect output to /dev/null
+      
+      means output will vanish 
+      
+      
+      
+      ex;
+      
+      maroof-56@maroof-56-VirtualBox:~/myscripts$ cd /root/
+bash: cd: /root/: Permission denied
+
+maroof-56@maroof-56-VirtualBox:~/myscripts$ cd /root/ &> /dev/null
+
+     *** see nothing prints after that
+     
+     - U can use this in any file 
+     
+     
+     
+     
+     IF U WANT TO SEE DEBUGGING PROCESS OF SCRIPT
+     
+       - set -x 
+       
+       Put it at top of script to view each process line by line 
+       
+       
+     If you want to exit script when a commands fails 
+     
+       - set -e
+       
+       
+       
+     BACKGROUND PROCESS 
+     
+     
+        - nohup 
+        
+        if u have an script  to test & it will take too much time , in such case ur not able to use terminal until the script finish 
+        
+        so to background the process use nohup to easily use terminal for other use.
+        
+        syntax
+        
+        - nohup ./file_name & 
+        
+        
+        
+        Example :
+         maroof-56@maroof-56-VirtualBox:~/myscripts$ nohup bash ./15_forloop_with_file.sh &
+
+        
+         maroof-56@maroof-56-VirtualBox:~/myscripts$ nohup: ignoring input and appending output to 'nohup.out'
+
+         The process is running in the backgrround & output is stored in nohup.out file
+         
+         
+         
+         AUTOMATE  THE TASK 
+         
+          ONE TIME 
+        - to execute script only one time use at
+         
+         ex : at 23:03 PM  (press enter)
+         file_name 
+         ( it will schedule your task at that time )
+         
+        - to check scheddule  task 
+        
+         atq (type )
+         
+        - to remove the schedule 
+        
+         atrm id
+         
+         
+           REPETITIVE TAK
+            CRONTAB 
+           
+            - crontab -l   ( to see existing )
+            - crontab -e   ( to create )
+           
